@@ -8,6 +8,7 @@
     <!-- SB Admin 2 CSS -->
     <link href="<?= base_url('assets/sb-admin-2/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/sb-admin-2/css/sb-admin-2.min.css') ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/theme.css') ?>">
 </head>
 
 <body id="page-top">

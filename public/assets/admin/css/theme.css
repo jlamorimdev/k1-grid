@@ -1,0 +1,7 @@
+.bg-gradient-primary {
+    background: linear-gradient(180deg, #15151e 10%, #15151e 100%) !important;
+}
+
+.sidebar-dark .nav-item .nav-link {
+    color: #fff;
+}
