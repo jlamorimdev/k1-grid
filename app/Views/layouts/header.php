@@ -31,6 +31,14 @@
             </a>
         </li>
 
+        <hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('logout') ?>">
+                <i class="fas fa-sign-in-alt"></i>    
+                <span>Sair</span>
+            </a>
+        </li>
+
     </ul>
 
     <!-- Content Wrapper -->

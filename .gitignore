@@ -1,3 +1,2 @@
 .env
-writable/logs/
-writable/debugbar/
+writable/*

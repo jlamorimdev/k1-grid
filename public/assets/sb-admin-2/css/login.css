@@ -1,0 +1,25 @@
+.bg-login {
+    background-color: #15151e !important;
+}
+
+.bg-card-login {
+    background-color: #efefef !important;
+}
+
+.bg-card-login label {
+    color: #15151e;
+    display: block;
+    padding: 0 10px;
+}
+
+form.user .form-control-user {
+    border-radius: 1rem;
+    border: solid 1px #15151e;
+    width: 100%;
+}
+
+.bg-login .btn-login {
+    border-radius: 1rem !important;
+    width: 25%;
+    background-color: #e00;
+}
