@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libicu-dev
 
-RUN docker-php-ext-install pdo pdo_mysql intl
+RUN docker-php-ext-install pdo pdo_mysql mysqli intl
 
 RUN a2enmod rewrite
 
