@@ -11,6 +11,4 @@ class UserModel extends Model
     protected $useSoftDeletes   = false;
 
     protected $useTimestamps = true;
-
-
 }
