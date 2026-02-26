@@ -9,6 +9,7 @@ $routes->get('logout', 'AuthController::logout');
 
 $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Admin'], function($routes) {
     $routes->get('', 'Dashboard::index');
+    $routes->get('/dashboard', 'Dashboard::index');
 
     $routes->group('users', function($routes) {
         $routes->get('/', 'User::index');

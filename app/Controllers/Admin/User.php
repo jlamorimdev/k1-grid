@@ -16,6 +16,7 @@ class User extends BaseController
             'title' => 'Usuários',
             'users' => $users,
         ];
+
         return view('admin/users/list', $data);
     }
 }
