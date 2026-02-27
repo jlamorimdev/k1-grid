@@ -15,10 +15,10 @@ class AuthController extends BaseController
     {
         $model = new UserModel();
 
-        $email = $this->request->getPost('email');
+        $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        $user = $model->where('email', $email)
+        $user = $model->where('username', $username)
                       ->where('status', 1)
                       ->first();
 

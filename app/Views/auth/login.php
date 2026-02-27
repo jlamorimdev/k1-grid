@@ -28,9 +28,9 @@
                                         <img src="/assets/img/f1_logo.svg" alt="" class="mb-4">
                                     </div>
                                     <form class="user" action="<?= base_url('login'); ?>" id="login-form" class="mb-2" method="POST">
-                                        <label for="">E-mail</label>
+                                        <label for="">Username</label>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input type="username" class="form-control form-control-user" id="username" name="username" placeholder="Enter username...">
                                         </div>
                                         <div class="form-group">
                                         <label for="">Senha</label>
