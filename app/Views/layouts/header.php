@@ -8,6 +8,9 @@
     <!-- SB Admin 2 CSS -->
     <link href="<?= base_url('assets/sb-admin-2/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/sb-admin-2/css/sb-admin-2.min.css') ?>" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/theme.css') ?>">
 </head>
 
@@ -16,29 +19,74 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar sidebar-dark accordion k1-sidebar" id="accordionSidebar">
 
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-            <div class="sidebar-brand-text mx-3">K1 Grid</div>
+        <!-- Logo -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center px-4" href="#">
+            <img src="<?= base_url('assets/img/logo_k1.png') ?>" class="sidebar-logo">
         </a>
 
-        <hr class="sidebar-divider">
-
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="<?= base_url('admin') ?>">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
-            <a class="nav-link" href="<?= base_url('admin/users') ?>">
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-user-astronaut"></i>
+                <span>Pilotos</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-flag-checkered"></i>
+                <span>Corridas</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">
                 <i class="fas fa-users"></i>
+                <span>Equipes</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-trophy"></i>
+                <span>Campeonatos</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-chart-line"></i>
+                <span>Resultados</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Calendário</span>
+            </a>
+        </li>
+
+        <div class="sidebar-divider"></div>
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('admin/users') ?>">
+                <i class="fas fa-user-cog"></i>
                 <span>Usuários</span>
             </a>
         </li>
 
-        <hr class="sidebar-divider d-none d-md-block">
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('logout') ?>">
-                <i class="fas fa-sign-in-alt"></i>    
+            <a class="nav-link text-danger" href="<?= base_url('logout') ?>">
+                <i class="fas fa-sign-out-alt"></i>
                 <span>Sair</span>
             </a>
         </li>
@@ -50,7 +98,7 @@
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <nav class="navbar navbar-expand bg-dark-secondary topbar mb-4 static-top shadow text-white">
 
             <!-- Título à esquerda -->
             <span class="navbar-text">
