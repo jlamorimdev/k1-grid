@@ -7,12 +7,24 @@ use App\Models\UserModel;
 
 class User extends BaseController {
     public function index() {
+        $breadcrumbs[] = [
+            'link' => 'admin/',
+            'active' => false,
+            'text' => 'Home',
+        ];
+
+        $breadcrumbs[] = [
+            'link' => 'admin/users',
+            'active' => true,
+            'text' => 'Usuários',
+        ];
         
         $users = (new UserModel())->findAll();
 
         $data = [
             'title' => 'Usuários',
             'users' => $users,
+            'breadcrumbs' => $breadcrumbs,
         ];
 
         return view('admin/users/list', $data);

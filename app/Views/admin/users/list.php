@@ -1,14 +1,11 @@
 <?= view('layouts/header') ?>
 
-<h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+<h1 class="h3 mb-4 text-white-800"><?= $title; ?></h1>
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Lista de Usuários</h6>
-    </div>
-    <div class="card-body">
+<div class="card card-dark mb-4">
+    <div class="card-body py-1">
         <div class="table-responsive">
-            <table class="table" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
 
                 <thead>
                     <tr>
@@ -33,7 +30,7 @@
                             <td><?= $user['status'] == 1 ? 'Ativo' : 'Inativo'; ?></td>
                             <td class="text-right">
                                 <a href="<?= base_url('admin/users/delete/'.$user['id']); ?>" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
-                                <button type="button" class="btn btn-primary btn-sm btn-edit-user" data-toggle="modal" data-target="#userModal" data-id="<?= $user['id']; ?>" data-name="<?= $user['name']; ?>" data-username="<?= $user['username']; ?>" data-email="<?= $user['email']; ?>" data-role="<?= $user['role']; ?>" data-status="<?= $user['status']; ?>"><i class="far fa-edit"></i></button>
+                                <a href="<?= base_url('admin/users/edit/'.$user['id']); ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#userModal"><i class="far fa-edit"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -41,7 +38,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="7" class="text-right">
-                            <button type="button" class="btn btn-success btn-sm btn-new-user" data-toggle="modal" data-target="#userModal"> <span>Novo Usuário</span> </button>
+                            <a href="<?= base_url('admin/users/create'); ?>" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#userModal"> <span>Novo Usuário</span> </a>
                         </th>
                     </tr>
                 </tfoot>
@@ -107,37 +104,3 @@
 </div>
 
 <?= view('layouts/footer') ?>
-
-<script>
-    $(document).ready(function() {
-        $('.btn-new-user').on('click', function () {
-            $('#formUser [name="name"]').val('');
-            $('#formUser [name="username"]').val('');
-            $('#formUser [name="email"]').val('');
-            $('#formUser [name="role"]').val('');
-            $('#formUser [name="status"]').val('');
-            $('#formUser [name="id"]').val('');
-            $('#formUser [name="password"]').attr('required', true);
-            $('#formUser').attr('action', '<?= base_url('admin/users/new'); ?>');
-        });
-
-        $('.btn-edit-user').on('click', function () {
-            $edit_button = $(this);
-
-            let id = $edit_button.data('id');
-            let name = $edit_button.data('name');
-            let username = $edit_button.data('username');
-            let email = $edit_button.data('email');
-            let role = $edit_button.data('role');
-            let status = $edit_button.data('status');
-
-            $('#formUser [name="name"]').val(name);
-            $('#formUser [name="username"]').val(username);
-            $('#formUser [name="email"]').val(email);
-            $('#formUser [name="password"]').attr('required', false);
-            $('#formUser [name="role"]').val(role);
-            $('#formUser [name="status"]').val(status);
-            $('#formUser').attr('action', '<?= base_url('admin/users/update/'); ?>'+id);
-        });
-    });
-</script>

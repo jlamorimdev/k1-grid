@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,133 +17,144 @@
 
 <body id="page-top">
 
-<div id="wrapper">
+    <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav sidebar sidebar-dark accordion k1-sidebar" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav sidebar sidebar-dark accordion k1-sidebar" id="accordionSidebar">
 
-        <!-- Logo -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center px-4" href="#">
-            <img src="<?= base_url('assets/img/logo_k1.png') ?>" class="sidebar-logo">
-        </a>
-
-        <li class="nav-item active">
-            <a class="nav-link" href="<?= base_url('admin') ?>">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Dashboard</span>
+            <!-- Logo -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center px-4" href="<?= base_url('admin') ?>">
+                <img src="<?= base_url('assets/img/logo_k1.png') ?>" class="sidebar-logo">
             </a>
-        </li>
+            <?php $current_url = uri_string(); ?>
+            <li class="nav-item <?= ($current_url == 'admin') ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?= base_url('admin') ?>">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-user-astronaut"></i>
-                <span>Pilotos</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-user-astronaut"></i>
+                    <span>Pilotos</span>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-flag-checkered"></i>
-                <span>Corridas</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-flag-checkered"></i>
+                    <span>Corridas</span>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-users"></i>
-                <span>Equipes</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-users"></i>
+                    <span>Equipes</span>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-trophy"></i>
-                <span>Campeonatos</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-trophy"></i>
+                    <span>Campeonatos</span>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-chart-line"></i>
-                <span>Resultados</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Resultados</span>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-calendar-alt"></i>
-                <span>Calendário</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Calendário</span>
+                </a>
+            </li>
 
-        <div class="sidebar-divider"></div>
+            <div class="sidebar-divider"></div>
 
-        <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('admin/users') ?>">
-                <i class="fas fa-user-cog"></i>
-                <span>Usuários</span>
-            </a>
-        </li>
+            <li class="nav-item <?= ($current_url == 'admin/users') ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?= base_url('admin/users') ?>">
+                    <i class="fas fa-user-cog"></i>
+                    <span>Usuários</span>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link text-danger" href="<?= base_url('logout') ?>">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Sair</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger" href="<?= base_url('logout') ?>">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </a>
+            </li>
 
-    </ul>
+        </ul>
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
 
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand bg-dark-secondary topbar mb-4 static-top shadow text-white">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand bg-dark-secondary topbar mb-4 static-top shadow text-white">
 
-            <!-- Título à esquerda -->
-            <span class="navbar-text">
-                Bem-vindo ao K1 Grid 🏎️
-            </span>
+                    <!-- Título à esquerda -->
+                    <span class="navbar-text">
+                        <?php if (!empty($breadcrumbs)) { ?>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+                                        <?php if ($breadcrumb['active']) { ?>
+                                            <li class="breadcrumb-item active" aria-current="page"><?php echo $breadcrumb['text']; ?></li>
+                                        <?php } else { ?>
+                                            <li class="breadcrumb-item"><a href="<?php echo $breadcrumb['link']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </ol>
+                            </nav>
+                        <?php } else { ?>
+                            Bem-vindo ao K1 Grid 🏎️
+                        <?php } ?>
+                    </span>
 
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-auto">
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
 
-                <!-- Divider -->
-                <div class="topbar-divider d-none d-sm-block"></div>
+                        <!-- Divider -->
+                        <div class="topbar-divider d-none d-sm-block"></div>
 
-                <!-- User Information -->
-                <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown"
-                    role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                            <?= session()->get('user_name'); ?>
-                        </span>
+                        <!-- User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                        <img class="img-profile rounded-circle"
-                            src="<?= base_url('assets/img/user_logo.png') ?>">
-                    </a>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    <?= session()->get('user_name'); ?>
+                                </span>
 
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/user_logo.png') ?>">
+                            </a>
 
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Perfil
-                        </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 
-                        <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
 
-                        <a class="dropdown-item" href="<?= base_url('logout') ?>">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Sair
-                        </a>
-                    </div>
-                </li>
+                                <div class="dropdown-divider"></div>
 
-            </ul>
+                                <a class="dropdown-item" href="<?= base_url('logout') ?>">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Sair
+                                </a>
+                            </div>
+                        </li>
 
-            </nav>
+                    </ul>
 
-            <div class="container-fluid">
+                </nav>
+
+                <div class="container-fluid">

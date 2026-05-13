@@ -1,3 +1,13 @@
+:root {
+    --primary: #E10600;
+    --primary-hover: rgba(240, 21, 21, 0.35);
+    --bg-dark: #05070A;
+    --bg-card: #0f131a;
+    --text-light: #ffffff;
+    --text-muted: #999;
+    --border-color: rgba(255,255,255,0.08);
+}
+
 body,
 .sidebar,
 .topbar,
@@ -119,4 +129,53 @@ textarea {
 
 .sidebar .nav-link:hover {
     transform: scale(1.02);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "›";
+    color: #fff;
+}
+
+.breadcrumb {
+    background: transparent;
+    margin-bottom: 1rem;
+}
+
+.breadcrumb-item a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: var(--primary);
+}
+
+.card-dark {
+    background: linear-gradient(180deg, #090B0F 0%, #05070A 100%);
+}
+
+.card-dark table{
+    color: #fff;
+}
+
+#dataTable thead th {
+    border-top: none !important;
+}
+
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.btn-dark {
+    background-color: var(--bg-card);
+    color: #fff;
 }

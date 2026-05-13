@@ -13,6 +13,8 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
 
     $routes->group('users', function($routes) {
         $routes->get('/', 'User::index');
+        $routes->get('/create/', 'User::create');
+        $routes->get('/edit/(:num)', 'User::edit/$1');
         $routes->post('new', 'User::create');
         $routes->post('update/(:num)', 'User::update/$1');
         $routes->get('delete/(:num)', 'User::delete/$1');
