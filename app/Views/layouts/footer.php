@@ -1,10 +1,10 @@
 </div> <!-- container-fluid -->
         </div> <!-- content -->
 
-        <footer class="sticky-footer bg-white">
+        <footer class="sticky-footer">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>K1 Grid © <?= date('Y') ?></span>
+                    <span>K1 Grid Painel Administrativo © <?= date('Y') ?> - Todos os direitos reservados.</span>
                 </div>
             </div>
         </footer>

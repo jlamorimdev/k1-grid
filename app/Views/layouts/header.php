@@ -105,7 +105,7 @@
                     <span class="navbar-text">
                         <?php if (!empty($breadcrumbs)) { ?>
                             <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
+                                <ol class="breadcrumb mb-0">
                                     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
                                         <?php if ($breadcrumb['active']) { ?>
                                             <li class="breadcrumb-item active" aria-current="page"><?php echo $breadcrumb['text']; ?></li>

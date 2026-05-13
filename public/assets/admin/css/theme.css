@@ -32,8 +32,7 @@ textarea {
 /* LOGO */
 .sidebar-logo {
     width: 140px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 25px;
 }
 
 /* LINKS */
@@ -70,17 +69,6 @@ textarea {
     color: white !important;
     box-shadow: 0 0 25px rgba(240, 21, 21, 0.35);
     border-radius: 7px;
-}
-
-.sidebar .nav-item.active .nav-link::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 8px;
-    height: 70%;
-    width: 4px;
-    background: #E10600;
-    border-radius: 4px;
 }
 
 .sidebar-divider {
