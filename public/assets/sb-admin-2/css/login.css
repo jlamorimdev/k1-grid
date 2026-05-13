@@ -1,25 +1,120 @@
-.bg-login {
-    background-color: #15151e !important;
+/* RESET */
+body {
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
 }
 
-.bg-card-login {
-    background-color: #efefef !important;
+/* WRAPPER */
+.login-wrapper {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.bg-card-login label {
-    color: #15151e;
-    display: block;
-    padding: 0 10px;
-}
-
-form.user .form-control-user {
-    border-radius: 1rem;
-    border: solid 1px #15151e;
+/* BACKGROUND COM IMAGEM */
+.login-bg {
+    position: absolute;
     width: 100%;
+    height: 100%;
+    background: url('/assets/img/bg_login.png') no-repeat center;
+    background-size: cover;
+    animation: zoomBg 20s ease-in-out infinite alternate;
+    z-index: 1;
 }
 
-.bg-login .btn-login {
-    border-radius: 1rem !important;
-    width: 25%;
-    background-color: #e00;
+/* OVERLAY ESCURO (ESSENCIAL) */
+.login-bg::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.login-bg::after {
+    background: linear-gradient( to bottom, rgba(5,7,10,0.4), rgba(5,7,10,0.85) );
+}
+
+.login-card {
+    position: relative;
+    padding: 40px;
+    background: rgba(10, 12, 16, 0.85);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    width: 30rem !important;
+    z-index: 2;
+    width: 400px;
+    max-width: 90%;
+}
+
+.login-card img {
+    width: 160px;
+    max-width: 100%;
+}
+
+/* LOGO */
+.logo-login {
+    width: 140px;
+}
+
+.login-subtitle {
+    color: #E10600;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* INPUTS */
+.form-control-login {
+    background: #0f131a;
+    border: 1px solid #1f2633;
+    color: #fff;
+    padding: 12px;
+    border-radius: 6px;
+}
+
+.form-control-login:focus {
+    border-color: #E10600;
+    box-shadow: 0 0 0 0.2rem rgba(225,6,0,0.2);
+    background: #0f131a;
+    color: #fff;
+}
+
+/* BOTÃO PRINCIPAL */
+.btn-login {
+    background: #E10600;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.btn-login:hover {
+    background: #88040A;
+    color: #fff;
+}
+
+/* BOTÃO TOKEN */
+.btn-token {
+    background: transparent;
+    border: 1px solid #2a2f3a;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.btn-token:hover {
+    border-color: #E10600;
+    color: #fff;
+}
+
+@keyframes zoomBg {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
 }
