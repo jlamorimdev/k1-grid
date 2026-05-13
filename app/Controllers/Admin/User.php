@@ -30,8 +30,72 @@ class User extends BaseController {
         return view('admin/users/list', $data);
     }
 
+    public function createUser() {
+        $breadcrumbs[] = [
+            'link' => 'admin/',
+            'active' => false,
+            'text' => 'Home',
+        ];
+
+        $breadcrumbs[] = [
+            'link' => 'admin/users',
+            'active' => false,
+            'text' => 'Usuários',
+        ];
+
+        $breadcrumbs[] = [
+            'link' => 'admin/users/edit/',
+            'active' => true,
+            'text' => 'Novo Usuário',
+        ];
+        
+        $action = base_url('admin/users/new');
+
+        $data = [
+            'title'       => 'Novo Usuário',
+            'user'        => [],
+            'action'      => $action,
+            'breadcrumbs' => $breadcrumbs,
+        ];
+
+        return view('admin/users/form', $data);
+    }
+
+    public function editUser($user_id) {
+
+        $breadcrumbs[] = [
+            'link' => 'admin/',
+            'active' => false,
+            'text' => 'Home',
+        ];
+
+        $breadcrumbs[] = [
+            'link' => 'admin/users',
+            'active' => false,
+            'text' => 'Usuários',
+        ];
+
+        $breadcrumbs[] = [
+            'link' => 'admin/users/edit/'.$user_id,
+            'active' => true,
+            'text' => 'Editar Usuário',
+        ];
+        
+        $user = (new UserModel())->find($user_id);
+
+        $action = base_url('admin/users/update/'.$user_id);
+
+        $data = [
+            'title'       => 'Editar Usuário #' . $user['id'] . ' - ' . $user['name'],
+            'user'        => $user,
+            'action'      => $action,
+            'breadcrumbs' => $breadcrumbs,
+        ];
+
+        return view('admin/users/form', $data);
+    }
+
     public function create() {
-        $validation = \Config\Services::validation();
 
         $rules = [
             'name' => 'required|min_length[3]|max_length[100]',
@@ -39,7 +103,6 @@ class User extends BaseController {
             'email' => 'required|valid_email|is_unique[users.email]',
             'password' => 'required|min_length[6]',
             'role' => 'required|in_list[admin,pilot]',
-            'status' => 'required|in_list[0,1]',
         ];
 
         if (!$this->validate($rules)) {
@@ -49,6 +112,7 @@ class User extends BaseController {
         }
 
         $userModel = new UserModel();
+        $status = $this->request->getPost('status');
 
         $data = [
             'name'     => $this->request->getPost('name'),
@@ -56,7 +120,7 @@ class User extends BaseController {
             'email'    => $this->request->getPost('email'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
             'role'     => $this->request->getPost('role'),
-            'status'   => $this->request->getPost('status'),
+            'status'   => $status ?? 0,
         ];
 
         $userModel->insert($data);
@@ -81,10 +145,8 @@ class User extends BaseController {
             'username' => "required|min_length[3]|max_length[50]|is_unique[users.username,id,{$id}]",
             'email' => "required|valid_email|is_unique[users.email,id,{$id}]",
             'role' => 'required|in_list[admin,pilot]',
-            'status' => 'required|in_list[0,1]',
         ];
 
-        // senha opcional no update
         if ($this->request->getPost('password')) {
             $rules['password'] = 'min_length[6]';
         }
@@ -95,18 +157,19 @@ class User extends BaseController {
                 ->with('errors', $this->validator->getErrors());
         }
 
+        $status = $this->request->getPost('status');
+
         $data = [
             'name'     => $this->request->getPost('name'),
             'username' => $this->request->getPost('username'),
             'email'    => $this->request->getPost('email'),
             'role'     => $this->request->getPost('role'),
-            'status'   => $this->request->getPost('status'),
+            'status'   => $status ?? 0,
         ];
 
         if ($this->request->getPost('password')) {
             $data['password'] = password_hash( $this->request->getPost('password'), PASSWORD_DEFAULT );
         }
-
         $userModel->update($id, $data);
 
         return redirect()->to(base_url('admin/users'))->with('success', 'Usuário atualizado com sucesso!');

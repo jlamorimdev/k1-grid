@@ -1,11 +1,13 @@
 :root {
     --primary: #E10600;
-    --primary-hover: rgba(240, 21, 21, 0.35);
+    --primary-hover: #f0151559;
+    --secondary: #0f131a;
+    --secondary-hover: #38363659;
     --bg-dark: #05070A;
     --bg-card: #0f131a;
     --text-light: #ffffff;
     --text-muted: #999;
-    --border-color: rgba(255,255,255,0.08);
+    --border-color: #ffffff14;
 }
 
 body,
@@ -146,6 +148,72 @@ textarea {
     color: #fff;
 }
 
+.card-dark input:not([type="checkbox"]):not([type="radio"]),
+.card-dark textarea,
+.card-dark select {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,.15);
+}
+
+/* Placeholder */
+.card-dark input::placeholder,
+.card-dark textarea::placeholder {
+    color: #6c757d; /* mesmo tom do text-muted do bootstrap */
+    opacity: 1;
+}
+
+/* Remove fundo branco no autofill do Chrome */
+.card-dark input:-webkit-autofill,
+.card-dark textarea:-webkit-autofill,
+.card-dark select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: #fff !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+.form-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 0;
+}
+
+.form-switch .form-check-input {
+    margin-left: 10px;
+    margin-top: 0;
+    flex-shrink: 0;
+    width: 42px;
+    height: 22px;
+    background-color: #1f2430;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 50px;
+    appearance: none;
+    position: relative;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.form-switch .form-check-input::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 2px;
+    left: 3px;
+    border-radius: 50%;
+    background: white;
+    transition: .3s;
+}
+
+.form-switch .form-check-input:checked {
+    background-color: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+    transform: translateX(18px);
+}
+
 #dataTable thead th {
     border-top: none !important;
 }
@@ -157,10 +225,34 @@ textarea {
     border-color: var(--primary);
 }
 
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
 .btn-primary:hover {
     color: #fff;
     background-color: var(--primary-hover);
     border-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: var(--secondary-hover);
+    border-color: var(--secondary-hover);
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: var(--secondary-hover);
+    border-color: var(--secondary-hover);
 }
 
 .btn-dark {
