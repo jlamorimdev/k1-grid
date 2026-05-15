@@ -19,6 +19,15 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
         $routes->post('update/(:num)', 'User::update/$1');
         $routes->get('delete/(:num)', 'User::delete/$1');
     });
+
+    $routes->group('teams', function($routes) {
+        $routes->get('/', 'Team::index');
+        $routes->get('create', 'Team::createTeam');
+        $routes->get('edit/(:num)', 'Team::editTeam/$1');
+        $routes->post('new', 'Team::create');
+        $routes->post('update/(:num)', 'Team::update/$1');
+        $routes->get('delete/(:num)', 'Team::delete/$1');
+    });
 });
 
 $routes->get('/', 'Home::index');

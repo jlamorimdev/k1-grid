@@ -13,6 +13,12 @@ class CreateTeams extends Migration {
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'championship_id' => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'unsigned'   => true,
+                'null'       => true,
+            ],
             'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 150,
@@ -42,6 +48,9 @@ class CreateTeams extends Migration {
         ]);
 
         $this->forge->addKey('id', true);
+        $this->forge->addKey('championship_id');
+        $this->forge->addForeignKey('championship_id', 'championships', 'id', 'RESTRICT', 'CASCADE');
+
         $this->forge->createTable('teams');
     }
 

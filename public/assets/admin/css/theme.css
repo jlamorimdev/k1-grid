@@ -23,6 +23,26 @@ textarea {
     font-weight: 300;
 }
 
+.gap-1 {
+    gap: 0.25rem;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-3 {
+    gap: 1rem;
+}
+
+.gap-4 {
+    gap: 1.5rem;
+}
+
+.gap-5 {
+    gap: 3rem;
+}
+
 /* SIDEBAR */
 .k1-sidebar {
     width: 270px !important;
@@ -258,4 +278,120 @@ textarea {
 .btn-dark {
     background-color: var(--bg-card);
     color: #fff;
+}
+
+.image-upload-preview {
+    position: relative;
+    height: 135px;
+    border: 1px dashed rgba(255,255,255,.2);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0B0F14;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-upload-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.image-upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    color: #AAA;
+
+    height: 100%;
+    gap: 10px;
+}
+
+.image-upload-placeholder i {
+    font-size: 30px;
+}
+
+.image-upload-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    display: flex;
+    gap: 8px;
+}
+
+.image-upload-actions button {
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(0,0,0,.65);
+    color: white;
+}
+
+/* EQUIPES */ 
+.team-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.team-logo {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.team-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.team-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-name {
+    font-size: 18px;
+    font-weight: 600;
+    font-style: italic;
+    color: #FFF;
+}
+
+.team-championship {
+    color: #999;
+    font-size: 13px;
+}
+
+.team-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.team-row td:last-child {
+    position: relative;
+}
+
+.team-row td:last-child::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    right: 0;
+    width: 4px;
+    border-radius: 10px;
+    background: var(--team-color);
 }

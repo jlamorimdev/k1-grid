@@ -48,8 +48,8 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item <?= (strstr($current_url, 'admin/teams')) ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?= base_url('admin/teams'); ?>">
                     <i class="fas fa-users"></i>
                     <span>Equipes</span>
                 </a>
@@ -78,7 +78,7 @@
 
             <div class="sidebar-divider"></div>
 
-            <li class="nav-item <?= ($current_url == 'admin/users') ? 'active' : ''; ?>">
+            <li class="nav-item <?= (strstr($current_url, 'admin/users')) ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?= base_url('admin/users') ?>">
                     <i class="fas fa-user-cog"></i>
                     <span>Usuários</span>
@@ -110,7 +110,7 @@
                                         <?php if ($breadcrumb['active']) { ?>
                                             <li class="breadcrumb-item active" aria-current="page"><?php echo $breadcrumb['text']; ?></li>
                                         <?php } else { ?>
-                                            <li class="breadcrumb-item"><a href="<?php echo $breadcrumb['link']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+                                            <li class="breadcrumb-item"><a href="/<?php echo $breadcrumb['link']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
                                         <?php } ?>
                                     <?php } ?>
                                 </ol>

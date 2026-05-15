@@ -9,16 +9,15 @@ class UserAdminSeed extends Seeder
     public function run()
     {
         $data = [
-            'name'     => 'admin',
+            'name'     => 'João Lucas Amorim',
             'username' => 'admin',
-            'email'    => 'admin@koneracing.com',
+            'email'    => 'jlamorimdev@gmail.com',
             'password' => password_hash('admin', PASSWORD_DEFAULT),
             'role'     => 'admin',
             'status'   => 1,
 
         ];
 
-        // Simple Queries
         $this->db->query('INSERT INTO users (name, username, email, password, role, status) VALUES(:name:, :username:, :email:, :password:, :role:, :status:)', $data);
     }
 }
