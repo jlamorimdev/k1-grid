@@ -1,0 +1,162 @@
+.btn-racing-submit {
+    position: relative;
+    overflow: hidden;
+    height: 2.2rem;
+    padding: 0 22px;
+    border: 0;
+    border-radius: 5px;
+    background: linear-gradient(
+        135deg,
+        #E10600 0%,
+        #B10500 100%
+    );
+
+    color: #FFF;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .15s ease, box-shadow .25s ease, background .25s ease;
+    box-shadow:
+        0 4px 12px rgba(225, 6, 0, .18),
+        inset 0 1px 0 rgba(255,255,255,.08);
+    cursor: pointer;
+}
+
+.btn-racing-submit:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 12px 24px rgba(225, 6, 0, .25),
+        inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.btn-racing-submit:active {
+    transform: scale(.985);
+}
+
+.btn-racing-submit .btn-text {
+    position: relative;
+    z-index: 2;
+
+    transition:
+        transform .2s ease,
+        opacity .2s ease;
+}
+
+/* =========================
+   KART ICON
+========================= */
+
+.kart-icon {
+    position: absolute;
+
+    top: 50%;
+    left: -50px;
+
+    width: 50px;
+    height: 50px;
+
+    transform: translateY(-50%);
+
+    opacity: .85;
+
+    z-index: 2;
+
+    transition:
+        left .25s ease,
+        opacity .25s ease,
+        transform .25s ease;
+}
+
+.kart-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: white;
+    object-fit: contain;
+}
+
+/* Hover:
+   Só aparece a frente do kart
+*/
+
+.btn-racing-submit:hover .kart-icon {
+    left: -20px;
+}
+
+/* =========================
+   LOADING STATE
+========================= */
+
+.btn-racing-submit.loading {
+    pointer-events: none;
+}
+
+.btn-racing-submit.loading .kart-icon {
+    animation: kartRun .9s cubic-bezier(.65,.05,.36,1) forwards;
+}
+
+/* efeito de velocidade */
+
+.btn-racing-submit.loading::after {
+    content: '';
+
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,.08) 40%,
+        transparent 100%
+    );
+
+    animation: speedEffect .9s ease forwards;
+
+    z-index: 1;
+}
+
+/* texto dá uma leve sumida */
+
+.btn-racing-submit.loading .btn-text {
+    opacity: .85;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes kartRun {
+
+    0% {
+        left: -22px;
+        transform: translateY(-50%) scale(1);
+    }
+
+    20% {
+        transform: translateY(-50%) scale(1.05);
+    }
+
+    100% {
+        left: calc(100% + 40px);
+        transform: translateY(-50%) scale(.95);
+    }
+}
+
+@keyframes speedEffect {
+
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}

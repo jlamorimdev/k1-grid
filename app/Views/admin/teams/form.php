@@ -35,7 +35,14 @@
             </div>
             <div class="modal-footer">
                 <a href="<?= base_url('admin/teams'); ?>" class="btn btn-secondary"> Cancelar </a>
-                <button type="submit" class="btn btn-primary"> Salvar </button>
+                <button class="btn-racing-submit">
+                    <span class="kart-icon">
+                        <?= file_get_contents(FCPATH . 'assets/img/kart_icon.svg') ?>
+                    </span>
+                    <span class="btn-text">
+                        Salvar Campeonato
+                    </span>
+                </button>
             </div>
         </form>
     </div>
