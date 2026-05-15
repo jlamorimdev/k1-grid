@@ -5,7 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 
-class User extends BaseController {
+class UserController extends BaseController {
     public function index() {
         $breadcrumbs[] = [
             'link' => 'admin/',

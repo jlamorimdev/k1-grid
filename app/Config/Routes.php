@@ -8,25 +8,34 @@ $routes->post('login', 'AuthController::authenticate');
 $routes->get('logout', 'AuthController::logout');
 
 $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Admin'], function($routes) {
-    $routes->get('', 'Dashboard::index');
-    $routes->get('dashboard', 'Dashboard::index');
+    $routes->get('', 'DashboardController::index');
+    $routes->get('dashboard', 'DashboardController::index');
 
     $routes->group('users', function($routes) {
-        $routes->get('/', 'User::index');
-        $routes->get('create', 'User::createUser');
-        $routes->get('edit/(:num)', 'User::editUser/$1');
-        $routes->post('new', 'User::create');
-        $routes->post('update/(:num)', 'User::update/$1');
-        $routes->get('delete/(:num)', 'User::delete/$1');
+        $routes->get('/', 'UserController::index');
+        $routes->get('create', 'UserController::createUser');
+        $routes->get('edit/(:num)', 'UserController::editUser/$1');
+        $routes->post('new', 'UserController::create');
+        $routes->post('update/(:num)', 'UserController::update/$1');
+        $routes->get('delete/(:num)', 'UserController::delete/$1');
     });
 
     $routes->group('teams', function($routes) {
-        $routes->get('/', 'Team::index');
-        $routes->get('create', 'Team::createTeam');
-        $routes->get('edit/(:num)', 'Team::editTeam/$1');
-        $routes->post('new', 'Team::create');
-        $routes->post('update/(:num)', 'Team::update/$1');
-        $routes->get('delete/(:num)', 'Team::delete/$1');
+        $routes->get('/', 'TeamController::index');
+        $routes->get('create', 'TeamController::createTeam');
+        $routes->get('edit/(:num)', 'TeamController::editTeam/$1');
+        $routes->post('new', 'TeamController::create');
+        $routes->post('update/(:num)', 'TeamController::update/$1');
+        $routes->get('delete/(:num)', 'TeamController::delete/$1');
+    });
+
+    $routes->group('championships', function($routes) {
+        $routes->get('/', 'ChampionshipController::index');
+        $routes->get('create', 'ChampionshipController::createTeam');
+        $routes->get('edit/(:num)', 'ChampionshipController::editTeam/$1');
+        $routes->post('new', 'ChampionshipController::create');
+        $routes->post('update/(:num)', 'ChampionshipController::update/$1');
+        $routes->get('delete/(:num)', 'ChampionshipController::delete/$1');
     });
 });
 

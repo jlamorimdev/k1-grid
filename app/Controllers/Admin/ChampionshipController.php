@@ -5,7 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\TeamModel;
 
-class Team extends BaseController {
+class ChampionshipController extends BaseController {
     public function index() {
         $breadcrumbs[] = [
             'link' => 'admin/',
@@ -14,15 +14,15 @@ class Team extends BaseController {
         ];
 
         $breadcrumbs[] = [
-            'link' => 'admin/teams',
+            'link' => 'admin/championships',
             'active' => true,
-            'text' => 'Equipes',
+            'text' => 'Campeonatos',
         ];
         
         $teams = (new TeamModel())->findAll();
 
         $data = [
-            'title' => 'Equipes',
+            'title' => 'Campeonatos',
             'teams' => $teams,
             'breadcrumbs' => $breadcrumbs,
         ];

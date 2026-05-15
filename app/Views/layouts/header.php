@@ -56,8 +56,8 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item <?= (strstr($current_url, 'admin/championships')) ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?= base_url('admin/championships'); ?>">
                     <i class="fas fa-trophy"></i>
                     <span>Campeonatos</span>
                 </a>
