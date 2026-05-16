@@ -44,8 +44,8 @@
                             </td>
                             <td><?= date('d/m/Y', strtotime($team['created_at'])); ?></td>
                             <td class="text-right">
-                                <a href="<?= base_url('admin/teams/delete/' . $team['id']); ?>" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
-                                <a href="<?= base_url('admin/teams/edit/' . $team['id']); ?>" class="btn btn-dark btn-sm"><i class="far fa-edit"></i></a>
+                                <a href="<?= base_url('admin/teams/delete/' . $team['id']); ?>" class="btn btn-danger mr-1"><i class="far fa-trash-alt"></i></a>
+                                <a href="<?= base_url('admin/teams/edit/' . $team['id']); ?>" class="btn btn-dark"><i class="far fa-edit"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -53,7 +53,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="7" class="text-right">
-                            <a href="<?= base_url('admin/teams/create'); ?>" class="btn btn-primary btn-sm"> <span>Nova Equipe</span> </a>
+                            <a href="<?= base_url('admin/teams/create'); ?>" class="btn btn-primary  "> <span>Nova Equipe</span> </a>
                         </th>
                     </tr>
                 </tfoot>

@@ -29,8 +29,8 @@
                             <td><?= $user['role']; ?></td>
                             <td><?= $user['status'] == 1 ? 'Ativo' : 'Inativo'; ?></td>
                             <td class="text-right">
-                                <a href="<?= base_url('admin/users/delete/'.$user['id']); ?>" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
-                                <a href="<?= base_url('admin/users/edit/'.$user['id']); ?>" class="btn btn-dark btn-sm"><i class="far fa-edit"></i></a>
+                                <a href="<?= base_url('admin/users/delete/'.$user['id']); ?>" class="btn btn-danger mr-1"><i class="far fa-trash-alt"></i></a>
+                                <a href="<?= base_url('admin/users/edit/'.$user['id']); ?>" class="btn btn-dark"><i class="far fa-edit"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -38,7 +38,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="7" class="text-right">
-                            <a href="<?= base_url('admin/users/create'); ?>" class="btn btn-primary btn-sm"> <span>Novo Usuário</span> </a>
+                            <a href="<?= base_url('admin/users/create'); ?>" class="btn btn-primary  "> <span>Novo Usuário</span> </a>
                         </th>
                     </tr>
                 </tfoot>

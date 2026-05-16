@@ -44,8 +44,8 @@
                             </td>
                             <td><?= date('d/m/Y', strtotime($championship['created_at'])); ?></td>
                             <td class="text-right">
-                                <a href="<?= base_url('admin/championships/delete/' . $championship['id']); ?>" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
-                                <a href="<?= base_url('admin/championships/edit/' . $championship['id']); ?>" class="btn btn-dark btn-sm"><i class="far fa-edit"></i></a>
+                                <a href="<?= base_url('admin/championships/delete/' . $championship['id']); ?>" class="btn btn-danger mr-1"><i class="far fa-trash-alt"></i></a>
+                                <a href="<?= base_url('admin/championships/edit/' . $championship['id']); ?>" class="btn btn-dark"><i class="far fa-edit"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -53,7 +53,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="7" class="text-right">
-                            <a href="<?= base_url('admin/championships/create'); ?>" class="btn btn-primary btn-sm"> <span>Novo Campeonato</span> </a>
+                            <a href="<?= base_url('admin/championships/create'); ?>" class="btn btn-primary  "> <span>Novo Campeonato</span> </a>
                         </th>
                     </tr>
                 </tfoot>
