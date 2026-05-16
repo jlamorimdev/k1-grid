@@ -89,7 +89,7 @@ class TeamController extends BaseController {
         $action = base_url('admin/teams/update/'.$team_id);
 
         $data = [
-            'title'       => 'Editar Equipe #' . $team['id'] . ' - ' . $team['name'],
+            'title'       => 'Editar Equipe',
             'team'        => $team,
             'action'      => $action,
             'breadcrumbs' => $breadcrumbs,

@@ -31,8 +31,8 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
 
     $routes->group('championships', function($routes) {
         $routes->get('/', 'ChampionshipController::index');
-        $routes->get('create', 'ChampionshipController::createTeam');
-        $routes->get('edit/(:num)', 'ChampionshipController::editTeam/$1');
+        $routes->get('create', 'ChampionshipController::createChampionship');
+        $routes->get('edit/(:num)', 'ChampionshipController::editChampionship/$1');
         $routes->post('new', 'ChampionshipController::create');
         $routes->post('update/(:num)', 'ChampionshipController::update/$1');
         $routes->get('delete/(:num)', 'ChampionshipController::delete/$1');

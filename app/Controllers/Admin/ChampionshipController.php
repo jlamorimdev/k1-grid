@@ -3,9 +3,17 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\ChampionshipModel;
 use App\Models\TeamModel;
 
 class ChampionshipController extends BaseController {
+
+    private $championshipModel;
+
+    public function __construct() {
+        $this->championshipModel = new ChampionshipModel();
+    }
+
     public function index() {
         $breadcrumbs[] = [
             'link' => 'admin/',
@@ -14,23 +22,23 @@ class ChampionshipController extends BaseController {
         ];
 
         $breadcrumbs[] = [
-            'link' => 'admin/championships',
+            'link' => '',
             'active' => true,
             'text' => 'Campeonatos',
         ];
         
-        $teams = (new TeamModel())->findAll();
+        $championships = $this->championshipModel->findAll();
 
         $data = [
-            'title' => 'Campeonatos',
-            'teams' => $teams,
-            'breadcrumbs' => $breadcrumbs,
+            'title'         => 'Campeonatos',
+            'championships' => $championships,
+            'breadcrumbs'   => $breadcrumbs,
         ];
 
-        return view('admin/teams/list', $data);
+        return view('admin/championships/list', $data);
     }
 
-    public function createTeam() {
+    public function createChampionship() {
         $breadcrumbs[] = [
             'link' => 'admin/',
             'active' => false,
@@ -38,30 +46,30 @@ class ChampionshipController extends BaseController {
         ];
 
         $breadcrumbs[] = [
-            'link' => 'admin/teams',
+            'link' => 'admin/championships',
             'active' => false,
-            'text' => 'Equipes',
+            'text' => 'Campeonatos',
         ];
 
         $breadcrumbs[] = [
-            'link' => 'admin/teams/edit/',
+            'link' => '',
             'active' => true,
-            'text' => 'Nova Equipe',
+            'text' => 'Novo Campeonato',
         ];
         
-        $action = base_url('admin/teams/new');
+        $action = base_url('admin/championships/new');
 
         $data = [
-            'title'       => 'Nova Equipe',
+            'title'       => 'Novo Campeonato',
             'user'        => [],
             'action'      => $action,
             'breadcrumbs' => $breadcrumbs,
         ];
 
-        return view('admin/teams/form', $data);
+        return view('admin/championships/form', $data);
     }
 
-    public function editTeam($team_id) {
+    public function editChampionship($team_id) {
         if (!$team_id) {
             return redirect()->back()->with('error', 'Equipe inválida.');
         }

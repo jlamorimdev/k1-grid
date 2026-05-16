@@ -18,10 +18,38 @@ class CreateChampionships extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
+            'logo' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
             'season' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
                 'null' => true,
+            ],
+            'kartodrome' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => false,
+            ],
+            'rounds' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'null' => TRUE,
+            ],
+            'points_system_json' => [
+                'type' => 'LONGTEXT',
+                'null' => TRUE,
+            ],
+            'enable_fastest_lap' => [
+                'type' => 'TINYINT',
+                'default' => 0,
+            ],
+            'fastest_lap_points' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'null' => TRUE,
             ],
             'status' => [
                 'type' => 'TINYINT',

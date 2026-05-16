@@ -195,8 +195,48 @@ textarea {
 }
 
 .card-dark {
-    background: linear-gradient(180deg, #090B0F 0%, #05070A 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(7, 12, 20, 0.95) 0%,
+        rgba(4, 7, 12, 0.98) 100%
+    );
+
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0 30px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.03);
 }
+
+.card-dark .card-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 22px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(225, 6, 0, 0.06) 0%,
+            rgba(225, 6, 0, 0.00) 45%
+        );
+}
+
+.card-dark .card-title {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: .95rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: #FFF;
+}
+
 
 .card-dark table{
     color: #fff;
@@ -428,4 +468,236 @@ textarea {
     width: 4px;
     border-radius: 10px;
     background: var(--team-color);
+}
+
+.page-form-actions {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 0 24px;
+    background: rgba(5, 7, 10, 0.92);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 999;
+    width: 100%;
+}
+
+/* evita conteúdo escondido atrás da barra */
+.content-wrapper {
+    padding-bottom: 90px;
+}
+
+.form-control:disabled  {
+    background: #0B0F14 !important;
+}
+
+/* Championship */
+.scoring-card {
+    background: linear-gradient(
+        180deg,
+        rgba(7, 12, 20, 0.95) 0%,
+        rgba(4, 7, 12, 0.98) 100%
+    );
+
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0 30px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.scoring-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 22px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(225, 6, 0, 0.06) 0%,
+            rgba(225, 6, 0, 0.00) 45%
+        );
+}
+
+.scoring-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.scoring-title {
+    margin: 0;
+
+    font-size: .95rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+
+    color: #FFF;
+}
+
+.scoring-subtitle {
+    font-size: .78rem;
+    color: rgba(255,255,255,.55);
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.scoring-subtitle i {
+    color: var(--primary);
+}
+
+.scoring-body {
+    padding: 22px;
+}
+
+.btn-scoring-add {
+    height: 38px;
+
+    padding: 0 16px;
+
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.08);
+
+    background: rgba(255,255,255,.03);
+
+    color: #FFF;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    transition: .2s ease;
+}
+
+.btn-scoring-add:hover {
+    transform: translateY(-1px);
+
+    background: rgba(225, 6, 0, .15);
+
+    border-color: rgba(225, 6, 0, .35);
+
+    box-shadow: 0 0 20px rgba(225, 6, 0, .15);
+
+    color: #FFF;
+}
+
+.scoring-grid {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    overflow-x: auto;
+
+    padding-bottom: 4px;
+}
+
+.position-item {
+    position: relative;
+    min-width: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.position-label {
+    text-align: center;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    color: rgba(255,255,255,.75);
+}
+
+.scoring-input {
+    height: 42px;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(255,255,255,.03) !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    color: #FFF !important;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: .2s ease;
+}
+
+.scoring-input:focus {
+    border-color: rgba(225, 6, 0, .5) !important;
+    box-shadow:
+        0 0 0 3px rgba(225, 6, 0, .12),
+        0 0 20px rgba(225, 6, 0, .10);
+
+    background: rgba(255,255,255,.05) !important;
+}
+
+/* Chrome, Safari, Edge */
+.scoring-input::-webkit-outer-spin-button,
+.scoring-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.scoring-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.position-input-wrapper {
+    position: relative;
+}
+
+.scoring-input {
+    padding-right: 30px !important;
+}
+
+/* remove spinner do input number */
+.scoring-input::-webkit-outer-spin-button,
+.scoring-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.scoring-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.btn-remove-position {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: rgba(255,255,255,.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .7rem;
+    transition: .2s ease;
+    opacity: 0;
+}
+
+.position-input-wrapper:hover .btn-remove-position {
+    opacity: 1;
+}
+
+.btn-remove-position:hover {
+    color: #E10600;
+    background: rgba(225, 6, 0, .12);
+    transform: translateY(-50%) scale(1.08);
 }
