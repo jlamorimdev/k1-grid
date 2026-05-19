@@ -33,6 +33,16 @@ class CreateChampionships extends Migration
                 'constraint' => 255,
                 'null' => false,
             ],
+            'pilot_max' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'null' => true,
+            ],
+            'team_max' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'null' => true,
+            ],
             'rounds' => [
                 'type' => 'INT',
                 'constraint' => 11,

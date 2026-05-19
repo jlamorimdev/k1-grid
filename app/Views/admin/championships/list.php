@@ -9,8 +9,9 @@
 
                 <thead>
                     <tr>
-                        <th style="width: 7%;">ID</th>
-                        <th style="width: 65%;">Campeonato</th>
+                        <th style="width: 5%;">ID</th>
+                        <th style="width: 45%;">Campeonato</th>
+                        <th style="width: 25%;">Local</th>
                         <th>Data de Criação</th>
                         <th></th>
                     </tr>
@@ -18,11 +19,10 @@
 
                 <tbody>
                     <?php foreach ($championships as $championship) : ?>
-                        <tr class="team-row" style="--team-color: <?= $championship['color']; ?>">
+                        <tr class="team-row">
                             <td>
                                 <div class="d-flex align-items-center gap-4">
                                     <?= $championship['id']; ?>
-                                    <span class="team-color" style="background: <?= $championship['color']; ?>"> </span>
                                 </div>
                             </td>
                             <td>
@@ -37,8 +37,15 @@
                                             <?= $championship['name']; ?>
                                         </div>
                                         <small class="team-championship">
-                                            <?= $championship['championship_name'] ?? '-'; ?>
+                                            <?= $championship['season'] ?? '-'; ?>
                                         </small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="team-content">
+                                    <div class="team-name">
+                                        <?= $championship['kartodrome']; ?>
                                     </div>
                                 </div>
                             </td>

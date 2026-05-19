@@ -69,47 +69,49 @@ class ChampionshipController extends BaseController {
         return view('admin/championships/form', $data);
     }
 
-    public function editChampionship($team_id) {
-        if (!$team_id) {
-            return redirect()->back()->with('error', 'Equipe inválida.');
+    public function editChampionship($championship_id) {
+        if (!$championship_id) {
+            return redirect()->back()->with('error', 'Campeonato inválido.');
         }
 
-        $team = (new TeamModel())->find($team_id);
+        $championship = $this->championshipModel->find($championship_id);
 
         $breadcrumbs[] = [
-            'link' => 'admin/',
+            'link'   => 'admin/',
             'active' => false,
-            'text' => 'Home',
+            'text'   => 'Home',
         ];
 
         $breadcrumbs[] = [
-            'link' => 'admin/teams',
+            'link'   => 'admin/teams',
             'active' => false,
-            'text' => 'Equipes',
+            'text'   => 'Campeonatos',
         ];
 
         $breadcrumbs[] = [
-            'link' => 'admin/teams/edit/'.$team_id,
+            'link'   => null,
             'active' => true,
-            'text' => 'Editar Equipe #' . $team['id'] . ' - ' . $team['name'],
+            'text'   => 'Editar Campeonato #' . $championship['id'] . ' - ' . $championship['name'],
         ];
         
-        $action = base_url('admin/teams/update/'.$team_id);
+        $action = base_url('admin/championships/update/'.$championship_id);
 
         $data = [
-            'title'       => 'Editar Equipe #' . $team['id'] . ' - ' . $team['name'],
-            'team'        => $team,
+            'title'       => 'Editar Campeonato #' . $championship['id'] . ' - ' . $championship['name'],
+            'championship'        => $championship,
             'action'      => $action,
             'breadcrumbs' => $breadcrumbs,
         ];
 
-        return view('admin/teams/form', $data);
+        return view('admin/championships/info', $data);
     }
 
     public function create() {
         $rules = [
-            'name' => 'required|min_length[3]|max_length[100]',
-            'logo' => 'if_exist|is_image[logo]|max_size[logo,2048]'
+            'name'          => 'required|min_length[1]|max_length[100]',
+            'kartodrome'    => 'required|min_length[1]',
+            'logo'          => 'if_exist|is_image[logo]|max_size[logo,2048]',
+            'points_system' => 'required'
         ];
 
         if (!$this->validate($rules)) {
@@ -118,14 +120,12 @@ class ChampionshipController extends BaseController {
                 ->with('errors', $this->validator->getErrors());
         }
 
-        $teamModel = new TeamModel();
-
         $logo = $this->request->getFile('logo');
 
         $logoPath = null;
 
         if ($logo && $logo->isValid() && !$logo->hasMoved()) {
-            $uploadPath = FCPATH . 'uploads/teams';
+            $uploadPath = FCPATH . 'uploads/championships';
 
             if (!is_dir($uploadPath)) {
                 mkdir($uploadPath, 0777, true);
@@ -133,36 +133,42 @@ class ChampionshipController extends BaseController {
             
             $newName = $logo->getRandomName();
             $logo->move($uploadPath, $newName);
-            $logoPath = 'uploads/teams/' . $newName;
+            $logoPath = 'uploads/championships/' . $newName;
         }
 
         $data = [
-            'name'            => $this->request->getPost('name'),
-            'color'           => $this->request->getPost('color'),
-            'championship_id' => !empty($this->request->getPost('championship_id')) ? $this->request->getPost('championship_id') : null,
-            'logo'            => $logoPath,
+            'name'               => $this->request->getPost('name'),
+            'kartodrome'         => $this->request->getPost('kartodrome'),
+            'season'             => $this->request->getPost('season'),
+            'rounds'             => $this->request->getPost('rounds'),
+            'pilot_max'          => $this->request->getPost('pilot_max'),
+            'team_max'           => $this->request->getPost('team_max'),
+            'enable_fastest_lap' => $this->request->getPost('enable_fastest_lap') ?? 0,
+            'fastest_lap_points' => $this->request->getPost('fastest_lap_points') ?? 0,
+            'points_system_json' => !empty($this->request->getPost('points_system')) ? json_encode($this->request->getPost('points_system')) : null,
+            'logo'               => $logoPath,
         ];
+        
+        $this->championshipModel->insert($data);
 
-        $teamModel->insert($data);
-
-        return redirect()->to(base_url('admin/teams'))
-            ->with('success', 'Equipe criada com sucesso!');
+        return redirect()->to(base_url('admin/championships'))->with('success', 'Campeonato criado com sucesso!');
     }
 
-    public function update($team_id) {
-        if (!$team_id) {
+    public function update($championship_id) {
+        if (!$championship_id) {
             return redirect()->back()->with('error', 'Equipe inválida.');
         }
 
-        $teamModel = new TeamModel();
-        $team = $teamModel->find($team_id);
-        if (!$team) {
+        $championship = $this->championshipModel->find($championship_id);
+        if (!$championship) {
             return redirect()->back()->with('error', 'Equipe não encontrada.');
         }
 
         $rules = [
-            'name' => 'required|min_length[3]|max_length[100]',
-            'logo' => 'if_exist|is_image[logo]|max_size[logo,2048]'
+            'name'          => 'required|min_length[1]|max_length[100]',
+            'kartodrome'    => 'required|min_length[1]',
+            'logo'          => 'if_exist|is_image[logo]|max_size[logo,2048]',
+            'points_system' => 'required'
         ];
 
         if (!$this->validate($rules)) {
@@ -173,10 +179,10 @@ class ChampionshipController extends BaseController {
 
         $logo = $this->request->getFile('logo');
 
-        $logoPath = $team['logo'];
+        $logoPath = $championship['logo'];
 
         if ($logo && $logo->isValid() && !$logo->hasMoved()) {
-            $uploadPath = FCPATH . 'uploads/teams';
+            $uploadPath = FCPATH . 'uploads/championships';
 
             if (!is_dir($uploadPath)) {
                 mkdir($uploadPath, 0777, true);
@@ -188,34 +194,39 @@ class ChampionshipController extends BaseController {
             
             $newName = $logo->getRandomName();
             $logo->move($uploadPath, $newName);
-            $logoPath = 'uploads/teams/' . $newName;
+            $logoPath = 'uploads/championship/' . $newName;
         }
 
         $data = [
-            'name'            => $this->request->getPost('name'),
-            'color'           => $this->request->getPost('color'),
-            'championship_id' => !empty($this->request->getPost('championship_id')) ? $this->request->getPost('championship_id') : null,
-            'logo'            => $logoPath,
+            'name'               => $this->request->getPost('name'),
+            'kartodrome'         => $this->request->getPost('kartodrome'),
+            'season'             => $this->request->getPost('season'),
+            'rounds'             => $this->request->getPost('rounds'),
+            'pilot_max'          => $this->request->getPost('pilot_max'),
+            'team_max'           => $this->request->getPost('team_max'),
+            'enable_fastest_lap' => $this->request->getPost('enable_fastest_lap') ?? 0,
+            'fastest_lap_points' => $this->request->getPost('fastest_lap_points') ?? 0,
+            'points_system_json' => !empty($this->request->getPost('points_system')) ? json_encode($this->request->getPost('points_system')) : null,
+            'logo'               => $logoPath,
         ];
         
-        $teamModel->update($team_id, $data);
+        $this->championshipModel->update($championship_id, $data);
 
-        return redirect()->to(base_url('admin/teams'))->with('success', 'Equipe atualizada com sucesso!');
+        return redirect()->to(base_url('admin/championships'))->with('success', 'Campeonato atualizado com sucesso!');
     }
 
     public function delete($id) {
         if (!$id) {
-            return redirect()->back()->with('error', 'Usuário inválido.');
+            return redirect()->back()->with('error', 'Campeonato inválido.');
         }
 
-        $userModel = new \App\Models\TeamModel();
-        $user = $userModel->find($id);
+        $user = $this->championshipModel->find($id);
         if (!$user) {
-            return redirect()->back()->with('error', 'Usuário não encontrado.');
+            return redirect()->back()->with('error', 'Campeonato não encontrado.');
         }
 
-        $userModel->delete($id);
+        $this->championshipModel->delete($id);
 
-        return redirect()->to(base_url('admin/teams'))->with('success', 'Usuário excluído com sucesso!');
+        return redirect()->to(base_url('admin/championships'))->with('success', 'Campeonato excluído com sucesso!');
     }
 }

@@ -14,6 +14,14 @@ class ChampionshipModel extends Model
     protected $allowedFields = [
         'name',
         'season',
+        'logo',
+        'kartodrome',
+        'pilot_max',
+        'team_max',
+        'rounds',
+        'points_system_json',
+        'enable_fastest_lap',
+        'fastest_lap_points',
         'status',
     ];
 }

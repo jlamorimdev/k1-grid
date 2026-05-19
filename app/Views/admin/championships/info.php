@@ -77,9 +77,9 @@
                         <label class="form-check-label" for="flexSwitchCheckDefault">Melhor Volta</label>
                     </div>
                 </div>
-                <div id="fastest_lap_points" class="form-group col-3" style="display: none;">
+                <div id="fastest_lap_points" class="form-group col-3" <?= isset($championship['enable_fastest_lap']) && $championship['enable_fastest_lap'] == 1 ? '' : 'style="display: none;"'; ?>>
                     <label>Pontuação Melhor Volta</label>
-                    <input type="number" class="form-control" name="fastest_lap_points" value="<?= $championship['fastest_lap_points'] ?? ''; ?>" disabled>
+                    <input type="number" class="form-control" name="fastest_lap_points" value="<?= $championship['fastest_lap_points'] ?? ''; ?>" <?= isset($championship['enable_fastest_lap']) && $championship['enable_fastest_lap'] == 1 ? '' : 'disabled'; ?>>
                     <?php if (!empty($errors['fastest_lap_points'])) { ?>
                         <span class="text-danger"><?= $errors['fastest_lap_points']; ?></span>
                     <?php } ?>
@@ -103,6 +103,18 @@
                 </div>
                 <div class="scoring-body">
                     <div class="scoring-grid">
+                        <?php $points_system = json_decode($championship['points_system_json']); ?>
+                        <?php foreach ($points_system as $key => $point) { ?>
+                            <div class="position-item">
+                                <span class="position-label"><?= $key +1; ?>º</span>
+                                <div class="position-input-wrapper">
+                                    <input type="number" name="points_system[]" class="form-control scoring-input" value="<?= $point; ?>">
+                                    <button type="button" class="btn-remove-position" onclick="removeItem(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
