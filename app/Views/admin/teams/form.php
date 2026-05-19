@@ -32,6 +32,9 @@
                         <label>Campeonato</label>
                         <select name="championship_id" id="championship_id" class="form-control">
                             <option value="">Selecione o campeonato</option>
+                            <?php foreach ($championships as $championship) { ?>
+                                <option value="<?= $championship['id']; ?>" <?= ( !empty($team['championship_id']) && $team['championship_id'] == $championship['id'] ) ? 'selected' :  ''; ?>><?= $championship['name']; ?></option>
+                            <?php } ?>
                         </select>
                         <?php if (!empty($errors['championship_id'])) { ?>
                             <span class="text-danger"><?= $errors['championship_id']; ?></span>

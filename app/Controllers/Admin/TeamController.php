@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\ChampionshipModel;
 use App\Models\TeamModel;
 
 class TeamController extends BaseController {
@@ -19,7 +20,7 @@ class TeamController extends BaseController {
             'text' => 'Equipes',
         ];
         
-        $teams = (new TeamModel())->findAll();
+        $teams = (new TeamModel())->getTeams();
 
         $data = [
             'title' => 'Equipes',
@@ -52,10 +53,11 @@ class TeamController extends BaseController {
         $action = base_url('admin/teams/new');
 
         $data = [
-            'title'       => 'Nova Equipe',
-            'user'        => [],
-            'action'      => $action,
-            'breadcrumbs' => $breadcrumbs,
+            'title'         => 'Nova Equipe',
+            'user'          => [],
+            'action'        => $action,
+            'championships' => (new ChampionshipModel())->findAll(),
+            'breadcrumbs'   => $breadcrumbs,
         ];
 
         return view('admin/teams/form', $data);
@@ -92,6 +94,7 @@ class TeamController extends BaseController {
             'title'       => 'Editar Equipe',
             'team'        => $team,
             'action'      => $action,
+            'championships' => (new ChampionshipModel())->findAll(),
             'breadcrumbs' => $breadcrumbs,
         ];
 

@@ -17,4 +17,14 @@ class TeamModel extends Model
         'color',
         'logo'
     ];
+
+    public function getTeams() {
+        $teams = $this
+            ->select('teams.*, championships.name AS championship_name')
+            ->join('championships', 'championships.id = teams.championship_id', 'LEFT')
+            ->orderBy('teams.name', 'ASC')
+            ->findAll();
+
+        return $teams;
+    }
 }
