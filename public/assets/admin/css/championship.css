@@ -45,3 +45,116 @@
 
     transform: scale(1.05);
 }
+
+.btn-close-card {
+    width: 34px;
+    height: 34px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: rgba(255,255,255,.45);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .2s ease;
+
+    cursor: pointer;
+}
+
+.btn-close-card:hover {
+    background: rgba(225, 6, 0, .12);
+
+    color: #FFF;
+}
+
+.quick-create-team {
+    margin-top: 1rem;
+
+    padding: 1rem 1.1rem;
+
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.015);
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.quick-create-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.quick-create-title {
+    color: #FFF;
+
+    font-size: .95rem;
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+.quick-create-subtitle {
+    color: rgba(255,255,255,.5);
+
+    font-size: .82rem;
+
+    margin-top: 4px;
+
+    line-height: 1.5;
+}
+
+.btn-quick-create {
+    height: 42px;
+
+    padding: 0 16px;
+
+    border: 1px dashed rgba(255,255,255,.12);
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.015);
+
+    color: rgba(255,255,255,.78);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: .9rem;
+    font-weight: 500;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        color .2s ease,
+        transform .15s ease;
+
+    cursor: pointer;
+
+    width: fit-content;
+}
+
+.btn-quick-create i {
+    font-size: .82rem;
+
+    color: var(--primary);
+}
+
+.btn-quick-create:hover {
+    border-color: rgba(225, 6, 0, .35);
+
+    background: rgba(225, 6, 0, .08);
+
+    color: #FFF;
+
+    transform: translateY(-1px);
+}
