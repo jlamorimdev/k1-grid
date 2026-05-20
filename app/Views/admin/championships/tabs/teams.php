@@ -1,0 +1,130 @@
+<div id="teams" class="championship-tab-div" style="display: none">
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-dark">
+                        <div class="card-header">
+                            <div class="card-title-wrapper">
+                                <span class="card-title">Equipes Inscritas</span>
+                                <span class="card-subtitle">Gerencie as equipes que estão participando deste campeonato.</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 7%;">#</th>
+                                            <th style="width: 40%;">Nome</th>
+                                            <th style="width: 7%;">Cor</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="championship-teams-table">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-dark championship-team-actions">
+                        <div class="card-header">
+                            <div class="card-title-wrapper">
+                                <span class="card-title"><i class="fas fa-link mr-2"></i>INSCRIÇÃO DE EQUIPE</span>
+                                <span class="card-subtitle">Selecione uma equipe para inscrever neste campeonato.</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Equipe</label>
+                                <select name="team_id" id="team_id" class="form-control"> </select>
+                            </div>
+                        </div>
+                        <div class="card-footer ms-auto">
+                            <button id="btn-add-team" type="button" class="btn btn-primary">
+                                <span class="kart-icon"> <?= file_get_contents(FCPATH . 'assets/img/kart_icon.svg') ?> </span>
+                                <span class="btn-text">
+                                    <i class="fas fa-link"></i>    
+                                        Inscrever
+                                </span>
+                            </button>
+                        </div>
+                        <div class="championship-limit-overlay">
+                            <span class="limit-title">
+                                Limite de equipes atingido
+                            </span>
+
+                            <span class="limit-subtitle">
+                                <?= $championship['team_max']; ?> /
+                                <?= $championship['team_max']; ?>
+                                equipes inscritas
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 px-4 mt-2">
+                    <div class="quick-create-inline">
+                        <span class="quick-create-text">
+                            Não encontrou a equipe?
+                        </span>
+                        <button type="button" class="btn-quick-inline" onclick="toggleCreateTeam(true)">
+                            <i class="fas fa-plus"></i>
+                            Criar Nova Equipe
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div id="create-team-card" class="card card-dark mt-3" style="display: none;">
+                        <div class="card-header">
+                            <div class="card-title-wrapper">
+                                <span class="card-title">
+                                    Criar Nova Equipe
+                                </span>
+                                <span class="card-subtitle">
+                                    Cadastre rapidamente uma nova equipe e inscreva no campeonato.
+                                </span>
+                            </div>
+                            <button type="button" class="btn-close-card" onclick="toggleCreateTeam(false)"> <i class="fas fa-times"></i> </button>
+                        </div>
+                        <form id="form-create-team">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-7">
+                                        <label>Nome da Equipe</label>
+                                        <input type="text" class="form-control" name="team_name" placeholder="Informe o nome da equipe">
+                                    </div>
+
+                                    <div class="form-group col-5">
+                                        <label>Cor da Equipe</label>
+                                        <input type="color" class="form-control" name="team_color" value="#fff">
+                                    </div>
+                                    <?= view('admin/components/image_upload', [
+                                        'name'  => 'team_logo',
+                                        'class' => 'col-12',
+                                        'label' => 'Logo da Equipe',
+                                        'value' => '',
+                                    ]) ?>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="card-footer d-flex justify-content-end gap-2">
+                            <button type="button" class="btn btn-secondary" onclick="toggleCreateTeam(false)"> Cancelar </button>
+                            <button type="button" class="btn btn-primary" id="btn-create-team">
+                                <i class="fas fa-link"></i>
+                                Criar e Inscrever
+                            </button>
+                        </div>
+                    </div>
+                </div> <!-- COL CREATE TEAM -->
+            </div>
+        </div>
+    </div>
+</div>
