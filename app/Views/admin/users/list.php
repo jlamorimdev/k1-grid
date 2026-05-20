@@ -9,7 +9,7 @@
 
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>#</th>
                         <th>Nome</th>
                         <th>Username</th>
                         <th>E-mail</th>

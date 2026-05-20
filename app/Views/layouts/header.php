@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/theme.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/kart-animation.css') ?>">
+    <link href="<?= base_url('assets/plugins/select2/select2.min.css') ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/select2.css') ?>">
 </head>
 
 <body id="page-top">

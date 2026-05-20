@@ -1,0 +1,20 @@
+.team-select-option {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.team-select-logo {
+    width: 32px;
+    height: 32px;
+
+    object-fit: contain;
+
+    border-radius: 6px;
+
+    background: rgba(255,255,255,.04);
+
+    padding: 3px;
+}
+

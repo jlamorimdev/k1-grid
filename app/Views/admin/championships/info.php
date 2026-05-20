@@ -1,4 +1,6 @@
 <?= view('layouts/header') ?>
+<link rel="stylesheet" href="<?= base_url('assets/admin/css/championship.css') ?>">
+
 <?php $errors = session()->getFlashdata('errors'); ?>
 
 <div class="championship-hero">
@@ -197,7 +199,22 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 7%;">#</th>
+                                                <th style="width: 40%;">Nome</th>
+                                                <th style="width: 7%;">Cor</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
 
+                                        <tbody id="championship-teams-table">
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -209,12 +226,21 @@
                         <div class="card card-dark">
                             <div class="card-header">
                                 <div class="card-title-wrapper">
-                                    <span class="card-title">Vincular Equipe ao Campeonato</span>
+                                    <span class="card-title"><i class="fas fa-link mr-2"></i>Vincular Equipe ao Campeonato</span>
                                     <span class="card-subtitle">Selecione uma equipe existe para vincular a este campeonato.</span>
                                 </div>
                             </div>
                             <div class="card-body">
-
+                                <div class="form-group">
+                                    <label>Equipe</label>
+                                    <select name="team_id" id="team_id" class="form-control"> </select>
+                                </div>
+                            </div>
+                            <div class="card-footer ms-auto">
+                                <button id="btn-add-team" type="button" class="btn btn-primary">
+                                    <span class="kart-icon"> <?= file_get_contents(FCPATH . 'assets/img/kart_icon.svg') ?> </span>
+                                    <span class="btn-text"> Adiciona Equipe </span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -228,6 +254,7 @@
 
 
 <script>
+    const championship_id = <?= $championship['id']; ?>;
     $(document).ready(function() {
         $('.btn-scoring-add').on('click', function() {
             $position = $('.position-item').length
@@ -245,6 +272,9 @@
 
             $('.scoring-grid').append($html)
         });
+
+        loadTeamsOptions();
+        loadChampionshipTeams();
     });
 
     function removeItem(element) {
@@ -271,4 +301,154 @@
         $(`#tab-${active_tab}`).addClass('active');
         $(`#${active_tab}`).show();
     }
+
+    function loadTeamsOptions() {
+        $.ajax({
+            url: '<?= base_url('/admin/championships/getAvailableTeams'); ?>',
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+
+                let html = `
+                    <option value="">
+                        Selecione uma equipe
+                    </option>
+                `;
+
+                response.forEach(team => {
+
+                    html += `
+                        <option
+                            value="${team.id}"
+                            data-logo="${team.logo}"
+                        >
+                            ${team.name}
+                        </option>
+                    `;
+                });
+
+                $('#team_id').html(html);
+
+                initTeamSelect();
+            }
+        });
+    }
+
+    function initTeamSelect() {
+        if ($('#team_id').hasClass('select2-hidden-accessible')) {
+            $('#team_id').select2('destroy');
+        }
+
+        $('#team_id').select2({
+            placeholder: 'Selecione uma equipe',
+
+            templateResult: formatTeamOption,
+            templateSelection: formatTeamOption,
+
+            escapeMarkup: function(markup) {
+                return markup;
+            }
+        });
+
+    }
+
+    function formatTeamOption(team) {
+        if (!team.id) {
+            return team.text;
+        }
+
+        let logo = $(team.element).data('logo');
+
+        return `
+            <div class="team-select-option">
+                <img src="${logo}"
+                    class="team-select-logo">
+
+                <span>
+                    ${team.text}
+                </span>
+            </div>
+        `;
+    }
+
+    function loadChampionshipTeams() {
+        $.ajax({
+            url: '<?= base_url('/admin/championships/getChampionshipTeams'); ?>/' + championship_id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                let html = '';
+                if (response.length === 0) {
+                    html = `
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-4">
+                                Nenhuma equipe vinculada ao campeonato.
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    response.forEach(team => {
+                        html += `
+                            <tr class="team-row" style="--team-color: ${team.color};">
+                                <td>
+                                    <div class="d-flex align-items-center gap-4">
+                                        ${team.id}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="team-info">
+                                        <div class="team-logo">
+                                            <img src="${team.logo}" alt="">
+                                        </div>
+                                        <div class="team-content">
+                                            <div class="team-name">
+                                                ${team.name}
+                                            </div>
+                                            <small class="team-championship">
+                                                &nbsp;
+                                            </small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <span class="team-color" style="background: ${team.color}"> </span>
+                                        ${team.color}
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="removeTeam(${team.id})"> 
+                                        <i class="far fa-trash-alt"></i> 
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                }
+                $('#championship-teams-table').html(html);
+            }
+        });
+    }
+
+    $('#btn-add-team').on('click', function () {
+        let team_id = $('#team_id').val();
+
+        if (!team_id) {
+            return;
+        }
+
+        $.ajax({
+            url: '<?= base_url('admin/championships/addTeam'); ?>',
+            type: 'POST',
+            data: {
+                championship_id: championship_id,
+                team_id: team_id
+            },
+            dataType: 'json',
+            success: function(response) {
+                loadTeamsOptions();
+                loadChampionshipTeams();
+            }
+        });
+    });
 </script>

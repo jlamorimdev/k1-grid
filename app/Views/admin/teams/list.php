@@ -9,7 +9,7 @@
 
                 <thead>
                     <tr>
-                        <th style="width: 7%;">ID</th>
+                        <th style="width: 7%;">#</th>
                         <th style="width: 65%;">Nome</th>
                         <th>Data de Criação</th>
                         <th></th>

@@ -229,4 +229,61 @@ class ChampionshipController extends BaseController {
 
         return redirect()->to(base_url('admin/championships'))->with('success', 'Campeonato excluído com sucesso!');
     }
+
+    public function getAvailableTeams() {
+        $teamModel = new TeamModel();
+
+        $teams = $teamModel->groupStart()->where('championship_id', null)->orWhere('championship_id', 0)->groupEnd()->orderBy('teams.name', 'ASC')->findAll();
+
+        foreach ($teams as &$team) {
+            $team['logo'] = !empty($team['logo']) ? base_url($team['logo']) : base_url('assets/img/default-team.png');
+        }
+
+        return $this->response->setJSON($teams);
+    }
+
+    public function getChampionshipTeams($championship_id) {
+        $teamModel = new TeamModel();
+
+        $teams = $teamModel->where('championship_id', $championship_id)->orderBy('teams.name', 'ASC')->findAll();
+        foreach ($teams as &$team) {
+            $team['logo'] = !empty($team['logo']) ? base_url($team['logo']) : base_url('assets/img/default-team.png');
+        }
+
+        return $this->response->setJSON($teams);
+    }
+
+    public function addTeam() {
+        try {
+            $team_id = $this->request->getPost('team_id');
+            $championship_id = $this->request->getPost('championship_id');
+
+            if (empty($team_id) || empty($championship_id)) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Dados inválidos.'
+                ]);
+
+            }
+
+            $teamModel = new TeamModel();
+
+            $teamModel->update($team_id, [
+                'championship_id' => $championship_id
+            ]);
+
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Equipe vinculada com sucesso.'
+            ]);
+
+        } catch (\Exception $e) {
+
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+
+        }
+    }
 }
