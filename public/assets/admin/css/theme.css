@@ -237,6 +237,18 @@ textarea {
     color: #FFF;
 }
 
+.card-title-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-dark .card-subtitle {
+    font-size: .78rem;
+    color: rgba(255,255,255,.55);
+
+    margin-top: 2px;
+}
+
 
 .card-dark table{
     color: #fff;
@@ -700,4 +712,75 @@ textarea {
     color: #E10600;
     background: rgba(225, 6, 0, .12);
     transform: translateY(-50%) scale(1.08);
+}
+
+.championship-tabs {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    margin-bottom: 2rem;
+    padding-left: 0;
+    list-style: none;
+}
+
+.championship-tabs a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 0;
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    font-weight: 500;
+    transition: .2s ease;
+    cursor: pointer;
+}
+
+.championship-tabs a:hover {
+    color: #fff;
+}
+
+.championship-tabs a:hover::after {
+    width: 100%;
+}
+
+.championship-tabs a.active {
+    color: #fff;
+}
+
+.championship-tabs a.active::after {
+    width: 100%;
+}
+
+.championship-tabs a::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 10px;
+    transition: width .25s ease;
+}
+
+.championship-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.championship-title {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.championship-meta {
+    display: flex;
+    gap: .75rem;
+    margin-top: .5rem;
+    color: rgba(255,255,255,.6);
+    font-size: .95rem;
 }
