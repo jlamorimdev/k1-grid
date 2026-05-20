@@ -1,3 +1,74 @@
+.championship-tabs {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    margin-bottom: 2rem;
+    padding-left: 0;
+    list-style: none;
+}
+
+.championship-tabs a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 0;
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    font-weight: 500;
+    transition: .2s ease;
+    cursor: pointer;
+}
+
+.championship-tabs a:hover {
+    color: #fff;
+}
+
+.championship-tabs a:hover::after {
+    width: 100%;
+}
+
+.championship-tabs a.active {
+    color: #fff;
+}
+
+.championship-tabs a.active::after {
+    width: 100%;
+}
+
+.championship-tabs a::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 10px;
+    transition: width .25s ease;
+}
+
+.championship-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.championship-title {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.championship-meta {
+    display: flex;
+    gap: .75rem;
+    margin-top: .5rem;
+    color: rgba(255,255,255,.6);
+    font-size: .95rem;
+}
+
 .team-select-option {
     display: flex;
     align-items: center;
@@ -157,4 +228,87 @@
     color: #FFF;
 
     transform: translateY(-1px);
+}
+
+.championship-team-actions {
+    position: relative;
+
+    transition: .25s ease;
+}
+
+.championship-limit-reached {
+    pointer-events: none;
+}
+
+.championship-limit-reached > *:not(.championship-limit-overlay) {
+    filter: blur(2px);
+
+    opacity: .45;
+}
+
+.championship-limit-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    z-index: 20;
+
+    text-align: center;
+}
+
+.championship-limit-reached
+.championship-limit-overlay {
+    display: flex;
+}
+
+.limit-title {
+    color: #FFF;
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.limit-subtitle {
+    margin-top: 6px;
+
+    color: rgba(255,255,255,.6);
+
+    font-size: .85rem;
+}
+
+.quick-create-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.quick-create-text {
+    color: rgba(255,255,255,.7);
+    font-size: .88rem;
+}
+
+.btn-quick-inline {
+    border: 0;
+    background: transparent;
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.btn-quick-inline:hover {
+    color: #FFF;
+    transform: translateX(2px);
 }

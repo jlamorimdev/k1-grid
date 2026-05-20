@@ -712,73 +712,101 @@ textarea {
     transform: translateY(-50%) scale(1.08);
 }
 
-.championship-tabs {
-    display: flex;
-    gap: 2rem;
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    margin-bottom: 2rem;
-    padding-left: 0;
-    list-style: none;
-}
+#global-loading {
+    position: fixed;
 
-.championship-tabs a {
-    position: relative;
-    display: inline-flex;
+    inset: 0;
+
+    background: rgba(2, 6, 12, .72);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 999999;
+
+    display: none;
+
     align-items: center;
-    padding: 1rem 0;
-    color: rgba(255,255,255,.65);
-    text-decoration: none;
-    font-weight: 500;
-    transition: .2s ease;
-    cursor: pointer;
+    justify-content: center;
 }
 
-.championship-tabs a:hover {
-    color: #fff;
-}
-
-.championship-tabs a:hover::after {
-    width: 100%;
-}
-
-.championship-tabs a.active {
-    color: #fff;
-}
-
-.championship-tabs a.active::after {
-    width: 100%;
-}
-
-.championship-tabs a::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--primary);
-    border-radius: 10px;
-    transition: width .25s ease;
-}
-
-.championship-hero {
+.loading-wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
+    justify-content: center;
+    gap: 18px;
+    animation: pulseLoading 1.8s ease infinite;
 }
 
-.championship-title {
-    margin: 0;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #fff;
+.loading-wrapper svg {
+    width: 120px;
+    height: 120px;
+    fill: #FFF;
+    animation: kartFloat 1.8s ease-in-out infinite
 }
 
-.championship-meta {
-    display: flex;
-    gap: .75rem;
-    margin-top: .5rem;
-    color: rgba(255,255,255,.6);
-    font-size: .95rem;
+.loading-text {
+    color: rgba(255,255,255,.82);
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.loading-wrapper svg * {
+    fill: #FFF !important;
+}
+
+@keyframes kartFloat {
+
+    0% {
+        transform:
+            translateY(0px)
+            rotate(-1deg);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            rotate(1deg);
+    }
+
+    100% {
+        transform:
+            translateY(0px)
+            rotate(-1deg);
+    }
+
+}
+
+@keyframes pulseLoading {
+
+    0% {
+        opacity: .55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .55;
+    }
+
+}
+
+@keyframes pulseText {
+
+    0% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .45;
+    }
+
 }

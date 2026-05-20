@@ -319,4 +319,49 @@ class ChampionshipController extends BaseController {
 
         }
     }
+
+    public function createTeam() {
+        try {
+
+            $teamModel = new TeamModel();
+
+            $name = $this->request->getPost('team_name');
+            $color = $this->request->getPost('team_color');
+            $championship_id = $this->request->getPost('championship_id');
+
+            $logo = $this->request->getFile('team_logo');
+
+            $logo_path = null;
+
+            if ($logo && $logo->isValid()) {
+
+                $newName = $logo->getRandomName();
+
+                $logo->move(
+                    FCPATH . 'uploads/teams/',
+                    $newName
+                );
+
+                $logo_path = 'uploads/teams/' . $newName;
+            }
+
+            $teamModel->insert([
+                'name' => $name,
+                'color' => $color,
+                'logo' => $logo_path,
+                'championship_id' => $championship_id
+            ]);
+
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Equipe criada com sucesso.'
+            ]);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+
+        }
+    }
 }

@@ -12,6 +12,23 @@
     </div> <!-- content-wrapper -->
 </div> <!-- wrapper -->
 
+
+<div id="global-loading">
+
+    <div class="loading-wrapper">
+
+        <?= file_get_contents(
+            FCPATH . 'assets/img/karting.svg'
+        ); ?>
+
+        <span class="loading-text">
+            Carregando...
+        </span>
+
+    </div>
+
+</div>
+
 <!-- JS -->
 <script src="<?= base_url('assets/sb-admin-2/vendor/jquery/jquery.min.js') ?>"></script>
 <script src="<?= base_url('assets/sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
@@ -24,6 +41,16 @@
         let d = new Date(date);
         return d.toLocaleDateString('pt-BR');
     }
+
+    function showLoading(text = 'Carregando...') {
+        $('.loading-text').text(text);
+        $('#global-loading') .css('display', 'flex') .hide() .fadeIn(120);
+    }
+
+    function hideLoading() {
+        $('#global-loading').fadeOut(120);
+    }
 </script>
+
 </body>
 </html>
