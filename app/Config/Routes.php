@@ -37,6 +37,7 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
         $routes->get('getChampionshipTeams/(:num)', 'ChampionshipController::getChampionshipTeams/$1');
         $routes->post('new', 'ChampionshipController::create');
         $routes->post('addTeam', 'ChampionshipController::addTeam');
+        $routes->post('removeTeam', 'ChampionshipController::removeTeam');
         $routes->post('update/(:num)', 'ChampionshipController::update/$1');
         $routes->get('delete/(:num)', 'ChampionshipController::delete/$1');
     });

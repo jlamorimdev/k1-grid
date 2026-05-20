@@ -286,4 +286,37 @@ class ChampionshipController extends BaseController {
 
         }
     }
+
+    public function removeTeam() {
+        try {
+            $team_id = $this->request->getPost('team_id');
+
+            if (empty($team_id)) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Dados inválidos.'
+                ]);
+
+            }
+
+            $teamModel = new TeamModel();
+
+            $teamModel->update($team_id, [
+                'championship_id' => null
+            ]);
+
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Equipe removida com sucesso.'
+            ]);
+
+        } catch (\Exception $e) {
+
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+
+        }
+    }
 }

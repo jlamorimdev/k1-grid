@@ -389,7 +389,7 @@
                 } else {
                     response.forEach(team => {
                         html += `
-                            <tr class="team-row" style="--team-color: ${team.color};">
+                            <tr id="team-${team.id}" class="team-row" style="--team-color: ${team.color};">
                                 <td>
                                     <div class="d-flex align-items-center gap-4">
                                         ${team.id}
@@ -417,8 +417,8 @@
                                     </div>
                                 </td>
                                 <td class="text-right">
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="removeTeam(${team.id})"> 
-                                        <i class="far fa-trash-alt"></i> 
+                                    <button type="button" class="btn-remove-team" onclick="removeTeam(${team.id})">
+                                        <i class="fas fa-times"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -426,6 +426,27 @@
                     });
                 }
                 $('#championship-teams-table').html(html);
+            }
+        });
+    }
+
+    function removeTeam(team_id) {
+        if (!team_id) {
+            return;
+        }
+
+        $('#team-'+team_id).remove();
+
+        $.ajax({
+            url: '<?= base_url('admin/championships/removeTeam'); ?>',
+            type: 'POST',
+            data: {
+                team_id: team_id
+            },
+            dataType: 'json',
+            success: function(response) {
+                loadTeamsOptions();
+                loadChampionshipTeams();
             }
         });
     }

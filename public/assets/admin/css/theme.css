@@ -334,6 +334,13 @@ textarea {
     border-color: var(--primary-hover);
 }
 
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    box-shadow: 0 0 0 .2rem rgba(105, 136, 228, .5);
+}
+
 .btn-secondary {
     color: #fff;
     background-color: var(--secondary);

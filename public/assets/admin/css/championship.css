@@ -18,3 +18,30 @@
     padding: 3px;
 }
 
+.btn-remove-team {
+    width: 32px;
+    height: 32px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: rgba(255,255,255,.35);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .2s ease;
+
+    cursor: pointer;
+}
+
+.btn-remove-team:hover {
+    background: rgba(225, 6, 0, .12);
+
+    color: #ff4d4d;
+
+    transform: scale(1.05);
+}
