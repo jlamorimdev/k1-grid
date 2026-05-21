@@ -38,7 +38,7 @@
                     <div class="card card-dark championship-team-actions">
                         <div class="card-header">
                             <div class="card-title-wrapper">
-                                <span class="card-title"><i class="fas fa-link mr-2"></i>INSCRIÇÃO DE EQUIPE</span>
+                                <span class="card-title"><i class="fas fa-flag-checkered mr-2"></i>INSCREVER EQUIPE</span>
                                 <span class="card-subtitle">Selecione uma equipe para inscrever neste campeonato.</span>
                             </div>
                         </div>
@@ -52,8 +52,7 @@
                             <button id="btn-add-team" type="button" class="btn btn-primary">
                                 <span class="kart-icon"> <?= file_get_contents(FCPATH . 'assets/img/kart_icon.svg') ?> </span>
                                 <span class="btn-text">
-                                    <i class="fas fa-link"></i>    
-                                        Inscrever
+                                    Inscrever
                                 </span>
                             </button>
                         </div>
@@ -118,7 +117,7 @@
                         <div class="card-footer d-flex justify-content-end gap-2">
                             <button type="button" class="btn btn-secondary" onclick="toggleCreateTeam(false)"> Cancelar </button>
                             <button type="button" class="btn btn-primary" id="btn-create-team">
-                                <i class="fas fa-link"></i>
+                                <i class="fas fa-clipboard-list"></i>
                                 Criar e Inscrever
                             </button>
                         </div>

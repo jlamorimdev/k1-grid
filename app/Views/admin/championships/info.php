@@ -360,12 +360,12 @@
                 $('#championship-teams-table').html(html);
                 
                 if (response.length >= <?= $championship['team_max']; ?>) {
-                    $('.quick-create-inline').hide();
-                    $('.championship-team-actions').addClass('championship-limit-reached');
-                    $('.limit-subtitle').text(response.length + ' / <?= $championship['team_max']; ?> equipes cadastradas')
+                    $('#teams .quick-create-inline').hide();
+                    $('#teams .championship-team-actions').addClass('championship-limit-reached');
+                    $('#teams .limit-subtitle').text(response.length + ' / <?= $championship['team_max']; ?> equipes cadastradas')
                 } else {
-                    $('.quick-create-inline').show();
-                    $('.championship-team-actions').removeClass('championship-limit-reached');
+                    $('#teams .quick-create-inline').show();
+                    $('#teams .championship-team-actions').removeClass('championship-limit-reached');
                 }
             }
         });
